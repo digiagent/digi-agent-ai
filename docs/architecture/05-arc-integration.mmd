@@ -1,0 +1,25 @@
+flowchart LR
+
+DigiAgent
+
+DigiAgent --> AppKit
+
+AppKit --> Send
+
+AppKit --> Swap
+
+AppKit --> Bridge
+
+AppKit --> UnifiedBalance
+
+Send --> ArcNetwork
+
+Swap --> ArcNetwork
+
+Bridge --> ArcNetwork
+
+UnifiedBalance --> ArcNetwork
+
+ArcNetwork --> SmartContracts
+
+SmartContracts --> Settlement
