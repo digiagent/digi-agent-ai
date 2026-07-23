@@ -1,0 +1,94 @@
+flowchart LR
+
+User((User))
+
+User --> UI
+
+subgraph UI["Next.js 15 Frontend"]
+    Dashboard
+    Chat
+    WalletUI
+    Campaigns
+    DebitCard
+end
+
+Dashboard --> CommerceAgent
+Chat --> CommerceAgent
+WalletUI --> CommerceAgent
+Campaigns --> CommerceAgent
+
+subgraph Agent["DigiPaga AI Commerce Agent"]
+
+CommerceAgent
+RecommendationEngine
+TreasuryEngine
+WalletEngine
+PaymentEngine
+VoiceEngine
+
+CommerceAgent --> RecommendationEngine
+CommerceAgent --> TreasuryEngine
+CommerceAgent --> WalletEngine
+CommerceAgent --> PaymentEngine
+CommerceAgent --> VoiceEngine
+
+end
+
+CommerceAgent --> Auth
+
+subgraph Authentication
+
+Privy
+Dynamic
+
+Auth --> Privy
+Auth --> Dynamic
+
+end
+
+CommerceAgent --> Circle
+
+subgraph Circle
+
+Wallets
+AgentWallet
+USDC
+EURC
+Transfer
+Bridge
+Swap
+UnifiedBalance
+
+end
+
+CommerceAgent --> Arc
+
+subgraph Arc
+
+AppKit
+Settlement
+GasAbstraction
+SmartContracts
+
+end
+
+CommerceAgent --> AI
+
+subgraph AI Providers
+
+Qwen
+DeepSeek
+Kimi
+GLM
+Nemotron
+
+end
+
+CommerceAgent --> Database
+
+subgraph Storage
+
+Postgres
+Redis
+
+end
