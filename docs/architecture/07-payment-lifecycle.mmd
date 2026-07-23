@@ -1,0 +1,27 @@
+sequenceDiagram
+
+participant Buyer
+
+participant Merchant
+
+participant DigiAgent
+
+participant Circle
+
+participant Arc
+
+Buyer->>Merchant: Purchase
+
+Merchant->>DigiAgent: Conversion Event
+
+DigiAgent->>Circle: Send USDC
+
+Circle->>Arc: Settlement
+
+Arc-->>Circle: Confirm
+
+Circle-->>DigiAgent: Payment Success
+
+DigiAgent-->>Merchant: Notify
+
+DigiAgent-->>Buyer: Receipt
