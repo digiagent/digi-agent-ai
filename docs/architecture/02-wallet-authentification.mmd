@@ -1,0 +1,31 @@
+sequenceDiagram
+
+actor User
+
+participant Frontend
+
+participant Privy
+
+participant DigiAgent
+
+participant Circle
+
+participant Arc
+
+User->>Frontend: Sign In
+
+Frontend->>Privy: Authenticate
+
+Privy-->>Frontend: JWT
+
+Frontend->>DigiAgent: Create Session
+
+DigiAgent->>Circle: Create Agent Wallet
+
+Circle-->>DigiAgent: Wallet Address
+
+DigiAgent->>Arc: Register Wallet
+
+Arc-->>DigiAgent: Ready
+
+DigiAgent-->>Frontend: Dashboard Ready
