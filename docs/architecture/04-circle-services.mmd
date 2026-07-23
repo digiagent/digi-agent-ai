@@ -1,0 +1,21 @@
+flowchart TD
+
+DigiAgent
+
+DigiAgent --> WalletAPI
+
+WalletAPI --> AgentWallet
+
+WalletAPI --> UnifiedBalance
+
+WalletAPI --> USDC
+
+WalletAPI --> EURC
+
+WalletAPI --> Transfers
+
+WalletAPI --> Swap
+
+WalletAPI --> Bridge
+
+Transfers --> WalletHistory
