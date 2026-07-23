@@ -1,0 +1,45 @@
+flowchart TD
+
+Browser
+
+Mobile
+
+Tablet
+
+Browser --> Vercel
+
+Mobile --> Vercel
+
+Tablet --> Vercel
+
+subgraph Frontend
+
+NextJS
+
+end
+
+NextJS --> API
+
+subgraph Backend
+
+Express
+
+CommerceService
+
+WalletService
+
+PaymentService
+
+AIService
+
+end
+
+CommerceService --> Postgres
+
+WalletService --> Circle
+
+PaymentService --> Arc
+
+AIService --> AIProviders
+
+Postgres --> Redis
