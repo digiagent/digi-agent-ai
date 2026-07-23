@@ -1,0 +1,33 @@
+flowchart LR
+
+subgraph Agent Network
+
+MerchantAgent
+
+TreasuryAgent
+
+CreatorAgent
+
+PaymentAgent
+
+DigiPagaAI
+
+end
+
+MerchantAgent <-- MCP --> DigiPagaAI
+
+CreatorAgent <-- MCP --> DigiPagaAI
+
+TreasuryAgent <-- MCP --> DigiPagaAI
+
+PaymentAgent <-- MCP --> DigiPagaAI
+
+DigiPagaAI --> AgentManifest
+
+AgentManifest --> capabilities.md
+
+AgentManifest --> api.md
+
+AgentManifest --> wallet.md
+
+AgentManifest --> commerce.md
