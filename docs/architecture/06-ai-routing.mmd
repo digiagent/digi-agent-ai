@@ -1,0 +1,23 @@
+flowchart TD
+
+Prompt
+
+Prompt --> IntentClassifier
+
+IntentClassifier --> Coding
+
+IntentClassifier --> Planning
+
+IntentClassifier --> FastReasoning
+
+IntentClassifier --> Conversation
+
+Coding --> Kimi
+
+Planning --> DeepSeek
+
+FastReasoning --> Qwen
+
+Conversation --> GLM
+
+Fallback --> Nemotron
