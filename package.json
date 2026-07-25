@@ -1,0 +1,27 @@
+{
+  "name": "digi-agent-ai",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck",
+    "dev:web": "turbo dev --filter=web",
+    "dev:api": "turbo dev --filter=api",
+    "clean": "turbo clean && rm -rf node_modules"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.0",
+    "typescript": "^5",
+    "prettier": "^3",
+    "prettier-plugin-tailwindcss": "^0.6",
+    "@typescript-eslint/eslint-plugin": "^8",
+    "@typescript-eslint/parser": "^8",
+    "eslint": "^9"
+  },
+  "packageManager": "pnpm@11.15.0",
+  "engines": {
+    "node": ">=18"
+  }
+}
