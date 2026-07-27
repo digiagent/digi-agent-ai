@@ -2,6 +2,16 @@
 <div align="center">
   <img src="public/digiagent-avatar.png" alt="DigiAgent" width="120" height="120" style="border-radius: 50%;" />
 
+1
+  ![](https://jade-secure-cuckoo-817.mypinata.cloud/ipfs/bafybeia3zxazlqun7ejwqabieerrzsespvpb5gsxx5nqqrznomlxsjut7a)
+
+ 2
+ ![Alt Text Description](https://jade-secure-cuckoo-817.mypinata.cloud/ipfs/bafybeia3zxazlqun7ejwqabieerrzsespvpb5gsxx5nqqrznomlxsjut7a)
+
+ 3
+ <img src="https://jade-secure-cuckoo-817.mypinata.cloud/ipfs/bafybeia3zxazlqun7ejwqabieerrzsespvpb5gsxx5nqqrznomlxsjut7a" width="400" alt="Description">
+ 
+
   <h1>DigiPaga AI</h1>
 
   <p><strong>Autonomous commerce agent for creators in Latin America and the Global South.<br/>Connect your social profile → AI finds campaigns → Someone buys → You instantly receive USDC.</strong></p>
