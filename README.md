@@ -254,6 +254,6 @@ MIT — see [LICENSE](LICENSE)
 ---
 
 <div align="center">
-  <p>Built with 🟢 on <a href="https://arc.io">Arc</a> · Powered by <a href="https://circle.com/usdc">USDC</a> · Auth by <a href="https://privy.io">Privy</a></p>
+  <p>Built with 🟢 on <a href="https://arc.io">Arc</a> · Powered by <a href="https://circle.com/usdc">Cirlce</a> · Auth by <a href="https://privy.io">Privy</a></p>
   <p><a href="https://github.com/digiagent/digi-agent-ai">github.com/digiagent/digi-agent-ai</a></p>
 </div>
