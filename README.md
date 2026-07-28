@@ -332,15 +332,6 @@ Other agents on the Arc network can read this manifest to discover capabilities 
 
 ---
 
-## Hackathon
-
-**Programmable Money Hackathon** · Encode Club × Arc × Circle · Agentic Economy Track
-
-Built to demonstrate that AI agents can autonomously earn, manage, and move programmable money — with real USDC on a real stablecoin-native L1 — without a bank account, without a custodian, and without a human in the loop.
-
-> *"The top teams will be offered places in an 8-week accelerator programme."*
-
----
 
 
 
