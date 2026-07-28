@@ -266,37 +266,6 @@ cp .env.example .env
 # Fill in your keys — see .env.example for the full list
 pnpm dev
 # web → http://localhost:3000
-# api → http://localhost:4000
-```
-
-### Environment variables
-
-| Variable | Where to get it |
-|----------|----------------|
-| `NEXT_PUBLIC_PRIVY_APP_ID` | [dashboard.privy.io](https://dashboard.privy.io) |
-| `CIRCLE_API_KEY` | [developers.circle.com](https://developers.circle.com) (sandbox) |
-| `ARC_RPC_URL` | `https://rpc.testnet.arc.network` |
-| `DATABASE_URL` | [neon.tech](https://neon.tech) free tier |
-| `OPENROUTER_API_KEY` | [openrouter.ai](https://openrouter.ai) |
-
-Full list in [`.env.example`](.env.example).
-
----
-
-## Agent manifest
-
-DigiPaga AI is built to be interoperable with other autonomous agents. The full capability manifest lives at [`docs/agent/capabilities.md`](docs/agent/capabilities.md) and describes:
-
-- What DigiPaga AI can do (Commerce Score, Campaign Match, USDC payout, voice commands, nanopayments)
-- Payment architecture and custody model
-- How other agents can discover and interact with DigiPaga AI
-- Policy limits and allowed autonomous actions
-
-Other agents on the Arc network can read this manifest to discover capabilities and send structured commands via the DigiPaga Protocol.
-
----
-
-## Screens
 
 
 
