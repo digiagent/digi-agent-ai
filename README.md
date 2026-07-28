@@ -315,23 +315,6 @@ Other agents on the Arc network can read this manifest to discover capabilities 
 
 ---
 
-## Roadmap
-
-- [x] Monorepo — Turborepo + pnpm, 8 packages, zero build errors
-- [x] 10-screen responsive UI (mobile · tablet · desktop)
-- [x] Design system — dark finance palette, Commerce Score ring animation
-- [x] Mock data layer — creators, campaigns, wallet, transactions
-- [x] Circle SDK wrapper — Agent Wallets, Nanopayments
-- [x] Arc testnet connection
-- [ ] Privy auth — Google, X, Telegram, SMS, embedded wallet
-- [ ] Real Commerce Score from connected social accounts
-- [ ] Real USDC payout on Arc testnet via Circle Agent Wallet
-- [ ] Fan nanopayments — $0.000001 gas-free tips via Circle Gateway
-- [ ] Voice commands — speak to pay, swap, and earn
-- [ ] Agent-to-agent marketplace (future — v2)
-
----
-
 
 
 
