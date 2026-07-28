@@ -94,19 +94,6 @@ DigiAgent: "💰 $24.00 USDC arrived in your wallet. Tx: 0xabc...def"
 
 ---
 
-## Run locally
-
-```bash
-git clone https://github.com/digiagent/digi-agent-ai.git
-cd digi-agent-ai
-pnpm install
-cp .env.example .env
-# fill in your keys — see .env.example for the full list
-pnpm dev
-# web app  → http://localhost:3000
-# api      → http://localhost:4000
-```
-
 ### Environment variables
 
 | Variable | Where to get it |
