@@ -245,27 +245,6 @@ MIT — see [LICENSE](LICENSE)
 
 ---
 
-**Custody model:** DigiPaga AI is an orchestration layer only. It never holds or custodies user or merchant funds. USDC custody lives in Circle Agent Wallets (MPC-secured). DigiPaga proposes and triggers payments within user-defined policy limits.
-
-
-
----
-
-## Quick start
-
-### Prerequisites
-- Node 20+ · pnpm 9+ · Docker (for local Postgres/Redis)
-
-### Run locally
-
-```bash
-git clone https://github.com/digiagent/digi-agent-ai.git
-cd digi-agent-ai
-pnpm install
-cp .env.example .env
-# Fill in your keys — see .env.example for the full list
-pnpm dev
-# web → http://localhost:3000
 
 
 
