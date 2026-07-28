@@ -91,14 +91,38 @@ USDC custody lives in Circle Agent Wallets (MPC-secured).
 ---
 
 
-
-
 ## Sponsor integrations
 
 | Sponsor | What we built | Evidence |
 |---------|--------------|----------|
 | **Arc** | USDC settlement, sub-second finality, USDC-denominated gas | All wallet txs on Arc testnet, chain 5042002 |
 | **Circle** | Agent Wallets (MPC), Nanopayments via Gateway, App Kits (Send/Swap/Bridge) | `packages/circle/src/client.ts` |
+
+---
+
+
+## Repo structure
+
+```
+digi-agent-ai/
+├── apps/
+│   ├── web/                    # Next.js 16 — all 10 screens
+│   └── api/                    # Express 5 — auth, wallet, social, agent
+├── packages/
+│   ├── circle/                 # CircleClient — wallets, transfers, nanopayments
+│   ├── arc/                    # ArcClient — testnet RPC, contract calls
+│   ├── ui/                     # shared shadcn/ui components
+│   ├── types/                  # shared TypeScript interfaces
+│   └── utils/                  # cn(), formatCurrency, generateId
+├── docs/
+│   ├── agent/
+│   │   ├── capabilities.md     # ← AI agent manifest (machine-readable)
+│   │   └── agent-knowledge.md
+│   └── architecture/
+└── data/
+    ├── offers/                 # mock affiliate offers
+    └── mock-social/            # mock social profiles
+```
 
 ---
 
@@ -223,55 +247,7 @@ MIT — see [LICENSE](LICENSE)
 
 **Custody model:** DigiPaga AI is an orchestration layer only. It never holds or custodies user or merchant funds. USDC custody lives in Circle Agent Wallets (MPC-secured). DigiPaga proposes and triggers payments within user-defined policy limits.
 
----
 
-## Tech stack
-
-**Frontend**
-- Next.js 16 · React 19 · TypeScript · TailwindCSS · shadcn/ui · Framer Motion
-- Privy (embedded wallets + social login)
-
-**Backend**
-- Express 5 · Prisma · PostgreSQL (Neon) · Redis (Upstash)
-- Modular service architecture (no monolith)
-
-**Money layer**
-- Arc — Circle's stablecoin-native L1 (USDC gas, sub-second finality)
-- Circle Agent Stack — Agent Wallets, Nanopayments via Circle Gateway
-- Circle App Kits — Send, Swap, Bridge, Unified Balance
-
-**AI**
-- Runtime agent: Qwen3-Instruct / Llama 3.3 70B (via OpenRouter)
-- Coding: Kimi K2 / DeepSeek V3 / GLM-4.5
-
-**Infra**
-- Turborepo · pnpm workspaces (8 packages, zero build errors)
-- Vercel (frontend) · Railway (API)
-
----
-
-## Repo structure
-
-```
-digi-agent-ai/
-├── apps/
-│   ├── web/                    # Next.js 16 — all 10 screens
-│   └── api/                    # Express 5 — auth, wallet, social, agent
-├── packages/
-│   ├── circle/                 # CircleClient — wallets, transfers, nanopayments
-│   ├── arc/                    # ArcClient — testnet RPC, contract calls
-│   ├── ui/                     # shared shadcn/ui components
-│   ├── types/                  # shared TypeScript interfaces
-│   └── utils/                  # cn(), formatCurrency, generateId
-├── docs/
-│   ├── agent/
-│   │   ├── capabilities.md     # ← AI agent manifest (machine-readable)
-│   │   └── agent-knowledge.md
-│   └── architecture/
-└── data/
-    ├── offers/                 # mock affiliate offers
-    └── mock-social/            # mock social profiles
-```
 
 ---
 
