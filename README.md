@@ -55,21 +55,6 @@ What makes it different from "just another affiliate app":
    user-defined policy limits.
 
 
-## What DigiPaga AI does
-
-DigiPaga AI is an **autonomous commerce agent** that runs on [Arc](https://arc.io), Circle's stablecoin-native L1. It scores your social and commercial reach, matches you to affiliate campaigns, generates tracked referral links, and — when someone converts — settles your earnings in USDC **on-chain, gaslessly, in under a second**.
-
-Once paid, the same agent manages the money: swap, save into yield, convert to fiat, or spend from a virtual multi-stablecoin debit card. All via voice or chat, in English, Spanish, and Portuguese.
-
-```
-You: "Find me campaigns for my fitness audience"
-DigiAgent: "Found 3 matches. NovaFit Gear — 8% commission, est. $180–$420/mo. Activate?"
-You: "Yes"
-DigiAgent: "Done. Your referral link is ready. [Link copied]"
---- someone clicks and buys ---
-DigiAgent: "💰 $24.00 USDC arrived in your wallet. Tx: 0xabc...def"
-```
-
 ---
 
 
@@ -78,6 +63,35 @@ It never holds, pools, or custodies user or merchant funds.
 USDC custody lives in Circle Agent Wallets (MPC-secured).
 
 ---
+
+
+## Tech stack
+
+**Frontend**
+- Next.js 16 · React 19 · TypeScript · TailwindCSS · shadcn/ui · Framer Motion
+- Privy (embedded wallets + social login)
+
+**Backend**
+- Express 5 · Prisma · PostgreSQL (Neon) · Redis (Upstash)
+- Modular service architecture (no monolith)
+
+**Money layer**
+- Arc — Circle's stablecoin-native L1 (USDC gas, sub-second finality)
+- Circle Agent Stack — Agent Wallets, Nanopayments via Circle Gateway
+- Circle App Kits — Send, Swap, Bridge, Unified Balance
+
+**AI**
+- Runtime agent: Qwen3-Instruct / Llama 3.3 70B (via OpenRouter)
+- Coding: Kimi K2 / DeepSeek V3 / GLM-4.5
+
+**Infra**
+- Turborepo · pnpm workspaces (8 packages, zero build errors)
+- Vercel (frontend) · Railway (API)
+
+---
+
+
+
 
 ## Sponsor integrations
 
