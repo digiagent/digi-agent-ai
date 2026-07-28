@@ -71,6 +71,26 @@ USDC custody lives in Circle Agent Wallets (MPC-secured).
 
 ---
 
+## Demo flow
+
+You: "Find me campaigns for my fitness audience"
+DigiAgent: "Found 3 matches. NovaFit Gear — 8% commission, est. $180–$420/mo. Activate?"
+You: "Yes"
+DigiAgent: "Done. Your referral link is ready."
+--- someone clicks and buys ---
+DigiAgent: "💰 $24.00 USDC arrived in your wallet. Tx: 0xabc...def"
+
+
+| Step | What happens |
+|------|-------------|
+| 1 | Sign in with Google — Privy creates an embedded MPC wallet automatically |
+| 2 | Pick your profile: Creator · Merchant · Freelancer · Business · Developer |
+| 3 | Connect Instagram / X / TikTok — DigiAgent computes your Commerce Score |
+| 4 | AI recommends affiliate campaigns matched to your audience |
+| 5 | Activate a campaign → generate a tracked referral link |
+| 6 | Hit "Simulate Sale" → **real USDC transfer on Arc testnet**, visible on arcscan.app |
+| 7 | Ask DigiAgent: *"Move $25 into yield"* → agent proposes and executes |
+| 8 | View wallet, rewards history, and virtual multi-stablecoin debit card |
 
 
 ---
@@ -452,6 +472,8 @@ DigiAgent: "💰 $24.00 USDC arrived in your wallet. Tx: 0xabc...def"
 
 ## Architecture
 
+-- mermaid
+
 CREATOR ──signs in──▶ Privy (embedded MPC wallet auto-created)
 │
 ┌──────────▼──────────┐
@@ -471,6 +493,7 @@ CREATOR ──signs in──▶ Privy (embedded MPC wallet auto-created)
 │ Chain ID: 5042002 │
 └─────────────────────┘
 
+--
 
 > **Custody rule:** DigiPaga AI is an orchestration layer only. It never holds, pools, or custodies user or merchant funds. USDC custody lives entirely in Circle Agent Wallets (MPC-secured).
 
