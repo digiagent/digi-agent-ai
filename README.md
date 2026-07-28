@@ -112,6 +112,31 @@ DigiAgent: "💰 $24.00 USDC arrived in your wallet. Tx: 0xabc...def"
 
 ---
 
+## Architecture
+
+```
+┌──────────────────────────────────────────────────────────┐
+│                    DigiPaga AI                           │
+│                                                          │
+│  ┌─────────┐    ┌──────────────┐    ┌─────────────────┐ │
+│  │  Privy  │───▶│  Commerce    │───▶│  DigiAgent      │ │
+│  │  Auth   │    │  Score Engine│    │  Orchestrator   │ │
+│  └─────────┘    └──────────────┘    └────────┬────────┘ │
+│       │                                       │          │
+│  Embedded                          ┌──────────▼───────┐ │
+│  MPC Wallet                        │  Circle Agent    │ │
+│       │                            │  Wallet (MPC)    │ │
+│       └────────────────────────────▶                  │ │
+│                                    └──────────┬───────┘ │
+└───────────────────────────────────────────────┼─────────┘
+                                                │
+                                    ┌───────────▼──────────┐
+                                    │   Arc Testnet        │
+                                    │   USDC · sub-second  │
+                                    │   settlement         │
+                                    └──────────────────────┘
+```
+
 ### Environment variables
 
 | Variable | Where to get it |
@@ -181,45 +206,6 @@ settle jobs, and transact with other agents using USDC.
 MIT — see [LICENSE](LICENSE)
 
 ---
-
-<div align="center">
-  <sub>Built on <a href="https://arc.io">Arc</a> · 
-  Powered by <a href="https://circle.com/usdc">USDC</a> · 
-  Auth by <a href="https://privy.io">Privy</a></sub>
-</div>
-READMEEOF
-
-git add README.md
-git commit -m "docs: tier-1 README — 60-second story, architecture, sponsor table, deployed addresses"
-git pull origin main --rebase && git push origin main
-
-
----
-
-## Architecture
-
-```
-┌──────────────────────────────────────────────────────────┐
-│                    DigiPaga AI                           │
-│                                                          │
-│  ┌─────────┐    ┌──────────────┐    ┌─────────────────┐ │
-│  │  Privy  │───▶│  Commerce    │───▶│  DigiAgent      │ │
-│  │  Auth   │    │  Score Engine│    │  Orchestrator   │ │
-│  └─────────┘    └──────────────┘    └────────┬────────┘ │
-│       │                                       │          │
-│  Embedded                          ┌──────────▼───────┐ │
-│  MPC Wallet                        │  Circle Agent    │ │
-│       │                            │  Wallet (MPC)    │ │
-│       └────────────────────────────▶                  │ │
-│                                    └──────────┬───────┘ │
-└───────────────────────────────────────────────┼─────────┘
-                                                │
-                                    ┌───────────▼──────────┐
-                                    │   Arc Testnet        │
-                                    │   USDC · sub-second  │
-                                    │   settlement         │
-                                    └──────────────────────┘
-```
 
 **Custody model:** DigiPaga AI is an orchestration layer only. It never holds or custodies user or merchant funds. USDC custody lives in Circle Agent Wallets (MPC-secured). DigiPaga proposes and triggers payments within user-defined policy limits.
 
