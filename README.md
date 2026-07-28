@@ -67,7 +67,6 @@ USDC custody lives in Circle Agent Wallets (MPC-secured).
 |---------|--------------|----------|
 | **Arc** | USDC settlement, sub-second finality, USDC-denominated gas | All wallet txs on Arc testnet, chain 5042002 |
 | **Circle** | Agent Wallets (MPC), Nanopayments via Gateway, App Kits (Send/Swap/Bridge) | `packages/circle/src/client.ts` |
-| **Privy** | Embedded wallet auto-created on social login, no seed phrase UX | `apps/web/src/app/layout.tsx` |
 
 ---
 
