@@ -55,7 +55,7 @@ export function Sidebar() {
   const { creator, wallet } = useMockData()
 
   return (
-    <aside className="w-60 bg-surface-high border-r border-border flex flex-col h-full overflow-y-auto">
+    <aside className="w-60 flex-shrink-0 bg-surface-high border-r border-border flex flex-col h-full overflow-y-auto">
       <div className="p-4 border-b border-border">
         <Link href="/dashboard" className="flex items-center gap-2 mb-4">
           <span className="text-lg font-bold text-accent font-[family-name:var(--font-display)]">
