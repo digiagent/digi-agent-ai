@@ -342,15 +342,7 @@ Built to demonstrate that AI agents can autonomously earn, manage, and move prog
 
 ---
 
-## Contributing
 
-1. Fork the repo
-2. Create a feature branch: `git checkout -b feat/your-feature`
-3. Commit: `git commit -m "feat: your feature"`
-4. Push: `git push origin feat/your-feature`
-5. Open a Pull Request
-
----
 
 
 
