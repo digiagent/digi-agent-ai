@@ -82,7 +82,7 @@ DigiAgent: "💰 $24.00 USDC arrived in your wallet. Tx: 0xabc...def"
 
 | Step | What happens |
 |------|-------------|
-| 1 | Sign in with Google — Privy creates an embedded MPC wallet automatically |
+| 1 | Sign in with Google — Privy or Dynamic creates an embedded MPC wallet automatically |
 | 2 | Pick your profile: Creator · Merchant · Freelancer · Business · Developer |
 | 3 | Connect Instagram / X / TikTok — DigiAgent computes your Commerce Score |
 | 4 | AI recommends affiliate campaigns matched to your audience |
