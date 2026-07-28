@@ -30,41 +30,6 @@
 </div>
 
 
-from here
-
-
-cat > README.md << 'READMEEOF'
-<div align="center">
-  <img src="apps/web/public/digi-coder-hoodie.png" 
-       alt="DigiAgent" width="140"/>
-
-  <h1>DigiPaga AI</h1>
-
-  <p>
-    <strong>Autonomous commerce agent for creators in Latin America.<br/>
-    Connect your social profile → AI scores your reach → Campaigns match → 
-    Someone buys → USDC arrives in under 1 second.</strong>
-  </p>
-
-  <p>
-    <a href="https://digi-agent-ai.vercel.app"><strong>🚀 Live App</strong></a>
-    &nbsp;·&nbsp;
-    <a href="https://testnet.arcscan.app">🔍 Arc Explorer</a>
-    &nbsp;·&nbsp;
-    <a href="docs/agent/capabilities.md">🤖 Agent Manifest</a>
-    &nbsp;·&nbsp;
-    <a href="docs/pitch/roadmap.md">📋 Roadmap</a>
-  </p>
-
-  [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://typescriptlang.org)
-  [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)](https://nextjs.org)
-  [![Arc](https://img.shields.io/badge/Arc-Testnet-9DCC4A?style=flat-square)](https://arc.io)
-  [![Circle](https://img.shields.io/badge/Circle-Agent%20Stack-00D395?style=flat-square)](https://developers.circle.com)
-  [![USDC](https://img.shields.io/badge/Powered%20by-USDC-2775CA?style=flat-square)](https://circle.com/usdc)
-  [![Hackathon](https://img.shields.io/badge/Encode%20Club-Agentic%20Economy%20Track-purple?style=flat-square)](https://encode.club)
-  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
-
-</div>
 
 ---
 
