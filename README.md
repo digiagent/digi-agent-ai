@@ -29,6 +29,225 @@
 
 </div>
 
+
+from here
+
+
+cat > README.md << 'READMEEOF'
+<div align="center">
+  <img src="apps/web/public/digi-coder-hoodie.png" 
+       alt="DigiAgent" width="140"/>
+
+  <h1>DigiPaga AI</h1>
+
+  <p>
+    <strong>Autonomous commerce agent for creators in Latin America.<br/>
+    Connect your social profile → AI scores your reach → Campaigns match → 
+    Someone buys → USDC arrives in under 1 second.</strong>
+  </p>
+
+  <p>
+    <a href="https://digi-agent-ai.vercel.app"><strong>🚀 Live App</strong></a>
+    &nbsp;·&nbsp;
+    <a href="https://testnet.arcscan.app">🔍 Arc Explorer</a>
+    &nbsp;·&nbsp;
+    <a href="docs/agent/capabilities.md">🤖 Agent Manifest</a>
+    &nbsp;·&nbsp;
+    <a href="docs/pitch/roadmap.md">📋 Roadmap</a>
+  </p>
+
+  [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://typescriptlang.org)
+  [![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)](https://nextjs.org)
+  [![Arc](https://img.shields.io/badge/Arc-Testnet-9DCC4A?style=flat-square)](https://arc.io)
+  [![Circle](https://img.shields.io/badge/Circle-Agent%20Stack-00D395?style=flat-square)](https://developers.circle.com)
+  [![USDC](https://img.shields.io/badge/Powered%20by-USDC-2775CA?style=flat-square)](https://circle.com/usdc)
+  [![Hackathon](https://img.shields.io/badge/Encode%20Club-Agentic%20Economy%20Track-purple?style=flat-square)](https://encode.club)
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)](LICENSE)
+
+</div>
+
+---
+
+## The 60-second story
+
+> You are a creator with 18,000 Instagram followers in Mexico City.
+> Brands want to reach your audience but you have no bank account, no 
+> payment processor, and no way to prove your reach. DigiPaga AI solves 
+> all three in one step. Connect your profile → your Commerce Score proves 
+> your value → the agent matches you to campaigns → someone buys → 
+> **USDC lands in your wallet before you finish reading this sentence.**
+
+What makes it different from "just another affiliate app":
+
+1. **The wallet appears automatically** — Privy creates an embedded MPC 
+   wallet the moment you sign in. No seed phrase. No "create wallet" step.
+2. **Your handle IS your payment address** — `@aliciaq` on Instagram maps 
+   directly to your Circle Agent Wallet on Arc. Send to a handle, not a hex.
+3. **The agent acts, not just recommends** — DigiAgent executes swaps, 
+   moves funds to yield, and settles payouts autonomously within 
+   user-defined policy limits.
+
+---
+
+## Architecture
+CREATOR ──signs in──▶ Privy (embedded MPC wallet auto-created)
+│
+┌──────────▼──────────┐
+│ DigiAgent │ ← the orchestrator
+│ Commerce Score │
+│ Campaign Matcher │
+│ Payout Engine │
+└──────────┬──────────┘
+│ instructs (never holds funds)
+┌──────────▼──────────┐
+│ Circle Agent │ ← actual USDC custody (MPC)
+│ Wallet │
+└──────────┬──────────┘
+│ settles on
+┌──────────▼──────────┐
+│ Arc Testnet │ ← sub-second, USDC gas
+│ Chain ID: 5042002 │
+└─────────────────────┘
+
+**Custody rule:** DigiPaga AI is an orchestration layer only.
+It never holds, pools, or custodies user or merchant funds.
+USDC custody lives in Circle Agent Wallets (MPC-secured).
+
+---
+
+## Sponsor integrations
+
+| Sponsor | What we built | Evidence |
+|---------|--------------|----------|
+| **Arc** | USDC settlement, sub-second finality, USDC-denominated gas | All wallet txs on Arc testnet, chain 5042002 |
+| **Circle** | Agent Wallets (MPC), Nanopayments via Gateway, App Kits (Send/Swap/Bridge) | `packages/circle/src/client.ts` |
+| **Privy** | Embedded wallet auto-created on social login, no seed phrase UX | `apps/web/src/app/layout.tsx` |
+
+---
+
+## Repo layout
+digi-agent-ai/
+├── apps/
+│ ├── landing/ ← marketing site (digipaga.com/ai) — no auth
+│ └── web/ ← the actual app — 10 screens, wallet, agent chat
+├── packages/
+│ ├── circle/ ← CircleClient: Agent Wallets, transfers, Nanopayments
+│ ├── arc/ ← ArcClient: testnet RPC, contract calls
+│ ├── ui/ ← shared shadcn/ui components
+│ ├── types/ ← shared TypeScript interfaces
+│ └── utils/ ← cn(), formatCurrency, generateId
+├── docs/
+│ ├── agent/
+│ │ ├── capabilities.md ← AI agent manifest (machine-readable)
+│ │ └── agent-knowledge.md
+│ └── architecture/
+└── data/
+├── offers/ ← mock affiliate offers
+└── mock-social/ ← mock social profiles for demo
+
+---
+
+## Run locally
+
+```bash
+git clone https://github.com/digiagent/digi-agent-ai.git
+cd digi-agent-ai
+pnpm install
+cp .env.example .env
+# fill in your keys — see .env.example for the full list
+pnpm dev
+# web app  → http://localhost:3000
+# api      → http://localhost:4000
+```
+
+### Environment variables
+
+| Variable | Where to get it |
+|----------|----------------|
+| `NEXT_PUBLIC_PRIVY_APP_ID` | [dashboard.privy.io](https://dashboard.privy.io) |
+| `CIRCLE_API_KEY` | [developers.circle.com](https://developers.circle.com) sandbox |
+| `CIRCLE_ENTITY_SECRET` | Circle dashboard |
+| `ARC_RPC_URL` | `https://rpc.testnet.arc.network` |
+| `ARC_CHAIN_ID` | `5042002` |
+| `DATABASE_URL` | [neon.tech](https://neon.tech) free tier |
+| `OPENROUTER_API_KEY` | [openrouter.ai](https://openrouter.ai) |
+
+Full reference in [`.env.example`](.env.example).
+
+---
+
+## Deployed addresses (Arc testnet, chain 5042002)
+
+| Contract | Address |
+|----------|---------|
+| Arc testnet RPC | `https://rpc.testnet.arc.network` |
+| Explorer | `https://testnet.arcscan.app` |
+| USDC (testnet) | via Circle sandbox faucet |
+
+---
+
+## Agent manifest
+
+DigiPaga AI is built for agent-to-agent interoperability.
+Full capability manifest: [`docs/agent/capabilities.md`](docs/agent/capabilities.md)
+
+Other agents on Arc can inspect this manifest to discover:
+- What DigiPaga AI can do autonomously
+- Policy limits and spend caps
+- How to send a structured payout command
+- MCP endpoint (future v2)
+
+---
+
+## Roadmap
+
+- [x] Turborepo monorepo — 8 packages, zero build errors
+- [x] 10-screen responsive UI (mobile · tablet · desktop)
+- [x] Dark finance design system — Commerce Score ring animation
+- [x] Mock data layer — creators, campaigns, wallet, transactions  
+- [x] Circle SDK wrapper — Agent Wallets, Nanopayments
+- [x] Arc testnet RPC connected
+- [x] Agent capability manifest (`docs/agent/capabilities.md`)
+- [ ] Privy auth — embedded wallet auto-created on Google/X/Telegram login
+- [ ] Real Commerce Score computed from connected social accounts
+- [ ] Live USDC payout on Arc testnet via Circle Agent Wallet
+- [ ] Fan nanopayments — gas-free tips via Circle Gateway
+- [ ] Voice commands — speak to pay, swap, and earn
+
+---
+
+## Hackathon
+
+**Programmable Money Hackathon** · Encode Club × Arc × Circle  
+Track: **Agentic Economy** — autonomous agents that hold wallets, pay, 
+settle jobs, and transact with other agents using USDC.
+
+---
+
+## License
+
+MIT — see [LICENSE](LICENSE)
+
+---
+
+<div align="center">
+  <sub>Built on <a href="https://arc.io">Arc</a> · 
+  Powered by <a href="https://circle.com/usdc">USDC</a> · 
+  Auth by <a href="https://privy.io">Privy</a></sub>
+</div>
+READMEEOF
+
+git add README.md
+git commit -m "docs: tier-1 README — 60-second story, architecture, sponsor table, deployed addresses"
+git pull origin main --rebase && git push origin main
+
+
+
+to here
+
+
+
+
 ---
 
 ## The problem
