@@ -54,25 +54,6 @@ What makes it different from "just another affiliate app":
 
 ---
 
-## Architecture
-CREATOR ──signs in──▶ Privy (embedded MPC wallet auto-created)
-│
-┌──────────▼──────────┐
-│ DigiAgent │ ← the orchestrator
-│ Commerce Score │
-│ Campaign Matcher │
-│ Payout Engine │
-└──────────┬──────────┘
-│ instructs (never holds funds)
-┌──────────▼──────────┐
-│ Circle Agent │ ← actual USDC custody (MPC)
-│ Wallet │
-└──────────┬──────────┘
-│ settles on
-┌──────────▼──────────┐
-│ Arc Testnet │ ← sub-second, USDC gas
-│ Chain ID: 5042002 │
-└─────────────────────┘
 
 **Custody rule:** DigiPaga AI is an orchestration layer only.
 It never holds, pools, or custodies user or merchant funds.
