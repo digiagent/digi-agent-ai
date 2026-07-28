@@ -298,23 +298,6 @@ Other agents on the Arc network can read this manifest to discover capabilities 
 
 ## Screens
 
-<table>
-  <tr>
-    <td align="center"><strong>Dashboard</strong><br/>Commerce Score + campaigns + wallet</td>
-    <td align="center"><strong>Commerce Score</strong><br/>AI-computed reach breakdown</td>
-    <td align="center"><strong>DigiAgent</strong><br/>Voice + chat orchestrator</td>
-  </tr>
-  <tr>
-    <td align="center"><strong>Campaigns</strong><br/>AI-matched affiliate offers</td>
-    <td align="center"><strong>Wallet</strong><br/>USDC · EURC · Rewards</td>
-    <td align="center"><strong>Virtual Card</strong><br/>Multi-stablecoin debit card</td>
-  </tr>
-</table>
-
-*(Screenshots coming — run `pnpm dev` or visit the [live demo](https://digi-agent-ai.vercel.app))*
-
----
-
 
 
 
