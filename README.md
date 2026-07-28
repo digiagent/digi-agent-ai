@@ -41,6 +41,8 @@
 > all three in one step. Connect your profile → your Commerce Score proves 
 > your value → the agent matches you to campaigns → someone buys → 
 > **USDC lands in your wallet before you finish reading this sentence.**
+>
+> 
 
 What makes it different from "just another affiliate app":
 
@@ -51,6 +53,22 @@ What makes it different from "just another affiliate app":
 3. **The agent acts, not just recommends** — DigiAgent executes swaps, 
    moves funds to yield, and settles payouts autonomously within 
    user-defined policy limits.
+
+
+## What DigiPaga AI does
+
+DigiPaga AI is an **autonomous commerce agent** that runs on [Arc](https://arc.io), Circle's stablecoin-native L1. It scores your social and commercial reach, matches you to affiliate campaigns, generates tracked referral links, and — when someone converts — settles your earnings in USDC **on-chain, gaslessly, in under a second**.
+
+Once paid, the same agent manages the money: swap, save into yield, convert to fiat, or spend from a virtual multi-stablecoin debit card. All via voice or chat, in English, Spanish, and Portuguese.
+
+```
+You: "Find me campaigns for my fitness audience"
+DigiAgent: "Found 3 matches. NovaFit Gear — 8% commission, est. $180–$420/mo. Activate?"
+You: "Yes"
+DigiAgent: "Done. Your referral link is ready. [Link copied]"
+--- someone clicks and buys ---
+DigiAgent: "💰 $24.00 USDC arrived in your wallet. Tx: 0xabc...def"
+```
 
 ---
 
@@ -175,47 +193,6 @@ git add README.md
 git commit -m "docs: tier-1 README — 60-second story, architecture, sponsor table, deployed addresses"
 git pull origin main --rebase && git push origin main
 
-
-
-
-
-
-
----
-
-## The problem
-
-Creators, freelancers, and small businesses across Latin America generate real commercial value online — but collecting that value is broken. Payment rails are slow, expensive, require bank accounts most people don't have, and cut 5–30% on every transaction. The money that does arrive comes days or weeks late, in the wrong currency, after three middlemen.
-
-## What DigiPaga AI does
-
-DigiPaga AI is an **autonomous commerce agent** that runs on [Arc](https://arc.io), Circle's stablecoin-native L1. It scores your social and commercial reach, matches you to affiliate campaigns, generates tracked referral links, and — when someone converts — settles your earnings in USDC **on-chain, gaslessly, in under a second**.
-
-Once paid, the same agent manages the money: swap, save into yield, convert to fiat, or spend from a virtual multi-stablecoin debit card. All via voice or chat, in English, Spanish, and Portuguese.
-
-```
-You: "Find me campaigns for my fitness audience"
-DigiAgent: "Found 3 matches. NovaFit Gear — 8% commission, est. $180–$420/mo. Activate?"
-You: "Yes"
-DigiAgent: "Done. Your referral link is ready. [Link copied]"
---- someone clicks and buys ---
-DigiAgent: "💰 $24.00 USDC arrived in your wallet. Tx: 0xabc...def"
-```
-
----
-
-## Demo flow (3 minutes)
-
-| Step | What happens |
-|------|-------------|
-| 1 | Sign in with Google — Privy creates an embedded MPC wallet automatically |
-| 2 | Pick your profile: Creator, Merchant, Freelancer, Business, or Developer |
-| 3 | Connect Instagram / X / TikTok — DigiAgent computes your Commerce Score |
-| 4 | AI recommends affiliate campaigns matched to your audience |
-| 5 | Activate a campaign → generate a tracked referral link |
-| 6 | Hit "Simulate Sale" → **real USDC transfer on Arc testnet**, visible on arcscan.app |
-| 7 | Ask DigiAgent: *"Move $25 into yield"* → see the proposed action |
-| 8 | View wallet, rewards history, and your virtual multi-stablecoin debit card |
 
 ---
 
