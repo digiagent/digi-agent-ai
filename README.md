@@ -71,25 +71,7 @@ USDC custody lives in Circle Agent Wallets (MPC-secured).
 
 ---
 
-## Repo layout
-digi-agent-ai/
-├── apps/
-│ ├── landing/ ← marketing site (digipaga.com/ai) — no auth
-│ └── web/ ← the actual app — 10 screens, wallet, agent chat
-├── packages/
-│ ├── circle/ ← CircleClient: Agent Wallets, transfers, Nanopayments
-│ ├── arc/ ← ArcClient: testnet RPC, contract calls
-│ ├── ui/ ← shared shadcn/ui components
-│ ├── types/ ← shared TypeScript interfaces
-│ └── utils/ ← cn(), formatCurrency, generateId
-├── docs/
-│ ├── agent/
-│ │ ├── capabilities.md ← AI agent manifest (machine-readable)
-│ │ └── agent-knowledge.md
-│ └── architecture/
-└── data/
-├── offers/ ← mock affiliate offers
-└── mock-social/ ← mock social profiles for demo
+
 
 ---
 
