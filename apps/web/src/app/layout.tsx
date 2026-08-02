@@ -10,7 +10,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "DigiPaga AI — Your AI layer for money",
+  title: "DigiAgent — Your AI layer for money",
   description:
     "Earn, send, and grow — just ask. The autonomous commerce agent platform for creators, freelancers, and small businesses.",
 };

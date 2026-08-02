@@ -3,6 +3,10 @@ packages:
   - "packages/*"
   - "services/*"
 allowBuilds:
+  '@reown/appkit': true
+  bufferutil: true
   esbuild: true
+  keccak: true
   prisma: true
   unrs-resolver: true
+  utf-8-validate: true

@@ -1,21 +1,34 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { motion } from "framer-motion"
 
+interface Particle {
+  id: number
+  x: number
+  y: number
+  size: number
+  delay: number
+  duration: number
+}
+
 export default function SplashPage() {
   const router = useRouter()
-  const [particles] = useState(() =>
-    Array.from({ length: 20 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 3 + 1,
-      delay: Math.random() * 5,
-      duration: Math.random() * 4 + 3,
-    })),
-  )
+  const [particles, setParticles] = useState<Particle[]>([])
+
+  useEffect(() => {
+    setParticles(
+      Array.from({ length: 20 }, (_, i) => ({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 3 + 1,
+        delay: Math.random() * 5,
+        duration: Math.random() * 4 + 3,
+      })),
+    )
+  }, [])
 
   return (
     <div className="fixed inset-0 bg-bg flex flex-col items-center justify-center px-6 overflow-hidden">
@@ -41,7 +54,7 @@ export default function SplashPage() {
       >
         <div className="flex items-center gap-3 mb-2">
           <span className="text-4xl font-bold text-accent font-[family-name:var(--font-display)]">
-            DigiPaga
+            DigiAgent
           </span>
           <span className="text-[10px] px-2 py-1 rounded-full bg-accent/10 text-accent font-medium tracking-wide">
             AI

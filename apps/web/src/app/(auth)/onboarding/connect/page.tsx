@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Check, Camera, MessageCircle, Music, User, Clapperboard } from "lucide-react"
+import { api } from "@/lib/api/client"
 
 const platforms = [
   { id: "instagram", icon: Camera, name: "Instagram", followers: "18.4K", comingSoon: false },
@@ -20,10 +21,30 @@ export default function OnboardingConnectPage() {
     instagram: true,
     twitter: true,
   })
+  const [submitting, setSubmitting] = useState(false)
 
-  const toggleConnect = (id: string) => {
+  const toggleConnect = async (id: string) => {
     if (platforms.find((p) => p.id === id)?.comingSoon) return
-    setConnected((prev) => ({ ...prev, [id]: !prev[id] }))
+    const next = { ...connected, [id]: !connected[id] }
+    setConnected(next)
+
+    if (next[id]) {
+      const followers = Number((platforms.find((p) => p.id === id)?.followers ?? "0").replace("K", "000"))
+      try {
+        await api.linkSocialAccount({
+          platform: id === "twitter" ? "x" : id,
+          handle: "creator",
+          followers,
+        })
+      } catch {
+        setConnected((prev) => ({ ...prev, [id]: false }))
+      }
+    }
+  }
+
+  const finishSetup = async () => {
+    setSubmitting(true)
+    router.push("/dashboard")
   }
 
   return (
@@ -94,10 +115,11 @@ export default function OnboardingConnectPage() {
 
         <div className="flex flex-col gap-3">
           <button
-            onClick={() => router.push("/dashboard")}
-            className="w-full py-3.5 rounded-xl bg-accent text-bg font-semibold text-base hover:bg-accent/90 transition-all"
+            onClick={finishSetup}
+            disabled={submitting}
+            className="w-full py-3.5 rounded-xl bg-accent text-bg font-semibold text-base hover:bg-accent/90 transition-all disabled:opacity-40"
           >
-            Finish Setup
+            {submitting ? "Setting up…" : "Finish Setup"}
           </button>
           <Link
             href="/dashboard"

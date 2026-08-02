@@ -59,7 +59,7 @@ export function Sidebar() {
       <div className="p-4 border-b border-border">
         <Link href="/dashboard" className="flex items-center gap-2 mb-4">
           <span className="text-lg font-bold text-accent font-[family-name:var(--font-display)]">
-            DigiPaga
+            DigiAgent
           </span>
           <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-accent/10 text-accent font-medium">
             AI

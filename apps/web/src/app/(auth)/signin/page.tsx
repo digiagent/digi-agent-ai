@@ -1,6 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
+import { usePrivy } from "@privy-io/react-auth"
 import { motion } from "framer-motion"
 import { Globe, MessageCircle, Send, Mail, Phone, Wallet } from "lucide-react"
 
@@ -15,9 +16,25 @@ const authOptions = [
 
 export default function SignInPage() {
   const router = useRouter()
+  const { login, ready, authenticated } = usePrivy()
 
   const handleAuth = (provider: string) => {
+    const providers: Record<string, "google" | "twitter" | "telegram" | "email" | "sms" | "wallet"> =
+      {
+        google: "google",
+        x: "twitter",
+        telegram: "telegram",
+        email: "email",
+        sms: "sms",
+        wallet: "wallet",
+      }
+    const loginMethod = providers[provider] ?? "email"
+    login({ loginMethods: [loginMethod] })
+  }
+
+  if (authenticated) {
     router.push("/onboarding/profile")
+    return null
   }
 
   return (
@@ -42,7 +59,8 @@ export default function SignInPage() {
             <button
               key={option.provider}
               onClick={() => handleAuth(option.provider)}
-              className="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-surface border border-border text-text-primary text-sm font-medium hover:border-accent/50 hover:bg-surface-high transition-all active:scale-[0.99]"
+              disabled={!ready}
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-surface border border-border text-text-primary text-sm font-medium hover:border-accent/50 hover:bg-surface-high transition-all active:scale-[0.99] disabled:opacity-50"
             >
               <option.icon size={18} className="text-text-secondary" />
               {option.label}

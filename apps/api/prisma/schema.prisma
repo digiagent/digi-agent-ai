@@ -1,13 +1,96 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
-  output   = "../generated/prisma"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+model User {
+  id              String    @id @default(cuid())
+  privyId         String    @unique
+  digiHandle      String    @unique
+  displayName     String?
+  avatarUrl       String?
+  email           String?
+  userType        String    @default("creator")
+  walletAddress   String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  socialAccounts  SocialAccount[]
+  commerceScore   CommerceScore?
+  wallet          Wallet?
+  referrals       Referral[]
+}
+
+model SocialAccount {
+  id          String   @id @default(cuid())
+  userId      String
+  platform    String
+  handle      String
+  followers   Int      @default(0)
+  connected   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, platform])
+}
+
+model CommerceScore {
+  id                String   @id @default(cuid())
+  userId            String   @unique
+  score             Int      @default(0)
+  audienceReach     Int      @default(0)
+  engagementRate    Int      @default(0)
+  postingFrequency  Int      @default(0)
+  nicheAlignment    Int      @default(0)
+  locationSignal    Int      @default(0)
+  niches            String[]
+  aiConfidence      Int      @default(0)
+  updatedAt         DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Wallet {
+  id                String   @id @default(cuid())
+  userId            String   @unique
+  circleWalletId    String?
+  circleWalletSetId String?
+  address           String?
+  usdcBalance       Float    @default(0)
+  eurcBalance       Float    @default(0)
+  rewardsBalance    Float    @default(0)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  transactions      Transaction[]
+}
+
+model Transaction {
+  id          String   @id @default(cuid())
+  walletId    String
+  circleTxId  String?  @unique
+  type        String
+  description String
+  amount      Float
+  asset       String   @default("USDC")
+  status      String   @default("pending")
+  txHash      String?
+  createdAt   DateTime @default(now())
+  wallet      Wallet   @relation(fields: [walletId], references: [id], onDelete: Cascade)
+}
+
+model Referral {
+  id          String   @id @default(cuid())
+  userId      String
+  campaignId  String
+  trackingUrl String
+  clicks      Int      @default(0)
+  conversions Int      @default(0)
+  earnings    Float    @default(0)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
