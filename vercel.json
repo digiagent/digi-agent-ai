@@ -1,13 +1,6 @@
 {
-  "buildCommand": "pnpm install --no-frozen-lockfile --shamefully-hoist && pnpm --filter web build",
+  "buildCommand": "npm install && npm run build --workspace=apps/web",
   "installCommand": null,
   "framework": "nextjs",
-  "nodeVersion": "22.x",
-  "build": {
-    "env": {
-      "PNPM_ENABLE_PRE_POST_SCRIPTS": "true",
-      "PNPM_SHAMEFULLY_HOIST": "true",
-      "PNPM_UNSAFE_PERM": "true"
-    }
-  }
+  "nodeVersion": "22.x"
 }
