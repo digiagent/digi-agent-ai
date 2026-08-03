@@ -1,6 +1,5 @@
 {
   "buildCommand": "npm install && npm run build --workspace=apps/web",
   "installCommand": null,
-  "framework": "nextjs",
-  "nodeVersion": "22.x"
+  "framework": "nextjs"
 }
