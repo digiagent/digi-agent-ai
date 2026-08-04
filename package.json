@@ -20,7 +20,7 @@
     "@typescript-eslint/parser": "^8",
     "eslint": "^9"
   },
-  "packageManager": "npm@10.8.0",
+  "packageManager": "pnpm@10.15.1"
   "engines": {
     "node": ">=22.0.0",
     "pnpm": ">=9.0.0"
