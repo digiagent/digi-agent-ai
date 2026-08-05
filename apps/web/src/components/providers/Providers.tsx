@@ -22,7 +22,7 @@ export function Providers({ children }: { children: ReactNode }) {
     <PrivyProvider
       appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID!}
       config={{
-        loginMethods: ["google", "twitter", "wallet"],
+        loginMethods: ["email"],
         appearance: { theme: "dark", accentColor: "#9DCC4A" },
         embeddedWallets: { ethereum: { createOnLogin: "users-without-wallets" } },
       }}
