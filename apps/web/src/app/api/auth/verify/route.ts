@@ -4,8 +4,13 @@ import { db } from '@/lib/db'
 export async function GET(req: NextRequest) {
   const privyId = req.nextUrl.searchParams.get('privyId')
 
+  // If no privyId, return mock/empty data so the page doesn't crash
   if (!privyId) {
-    return NextResponse.json({ error: 'privyId is required' }, { status: 400 })
+    return NextResponse.json({
+      user: null,
+      wallet: null,
+      digiHandle: null,
+    })
   }
 
   const user = await db.user.findUnique({
@@ -14,7 +19,11 @@ export async function GET(req: NextRequest) {
   })
 
   if (!user) {
-    return NextResponse.json({ error: 'User not found' }, { status: 404 })
+    return NextResponse.json({
+      user: null,
+      wallet: null,
+      digiHandle: null,
+    })
   }
 
   return NextResponse.json({
