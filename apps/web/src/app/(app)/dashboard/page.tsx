@@ -1,18 +1,40 @@
 "use client"
 
+import { useState } from "react"
 import { motion } from "framer-motion"
-import { Bell, DollarSign, Target, Gift } from "lucide-react"
+import { Bell, DollarSign, Target, Gift, Copy, Link2, Check, Share2 } from "lucide-react"
 import { CommerceScoreRing } from "@/components/ui/CommerceScoreRing"
 import { WalletCard } from "@/components/ui/WalletCard"
 import { CampaignCard } from "@/components/ui/CampaignCard"
 import { ActivityFeed } from "@/components/ui/ActivityFeed"
 import { useMockData } from "@/components/providers/MockDataProvider"
 import { useCommerceScore } from "@/hooks/useCommerceScore"
+import { toast } from "sonner"
 import Link from "next/link"
 
 export default function DashboardPage() {
   const { creator } = useMockData()
   const { score, tier } = useCommerceScore()
+  const [copied, setCopied] = useState(false)
+
+  const tipLink = `https://digi-agent-ai.vercel.app/tip/@${creator.handle}`
+
+  const copyTipLink = async () => {
+    await navigator.clipboard.writeText(tipLink)
+    setCopied(true)
+    toast.success("Tip link copied")
+    setTimeout(() => setCopied(false), 1500)
+  }
+
+  const shareTipLink = async () => {
+    const text = `Send me a USDC tip on Arc: ${tipLink} 🎁`
+    if (navigator.share) {
+      await navigator.share({ title: "Tip me USDC", text, url: tipLink })
+    } else {
+      await navigator.clipboard.writeText(text)
+      toast.success("Share text copied")
+    }
+  }
 
   return (
     <div className="p-4 md:p-6 lg:p-8 min-w-0">
@@ -88,6 +110,42 @@ export default function DashboardPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
           <WalletCard />
+          <div className="rounded-card bg-surface border border-border p-5 flex flex-col">
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-sm font-semibold text-text-primary">
+                My Tip Link
+              </span>
+              <span className="text-xs text-accent">Receive USDC</span>
+            </div>
+            <div className="flex items-center gap-2 p-3 rounded-lg bg-surface-high border border-border mb-3">
+              <Link2 size={14} className="text-accent flex-shrink-0" />
+              <span className="flex-1 text-sm text-text-secondary truncate font-mono">
+                {tipLink}
+              </span>
+            </div>
+            <div className="mt-auto grid grid-cols-2 gap-2">
+              <button
+                onClick={copyTipLink}
+                className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-accent text-bg text-sm font-semibold hover:bg-accent/90 transition-colors"
+              >
+                {copied ? <Check size={14} /> : <Copy size={14} />}
+                {copied ? "Copied" : "Copy"}
+              </button>
+              <button
+                onClick={shareTipLink}
+                className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-accent/10 border border-accent/30 text-accent text-sm font-semibold hover:bg-accent/20 transition-colors"
+              >
+                <Share2 size={14} />
+                Share
+              </button>
+            </div>
+            <Link
+              href={`/tip/@${creator.handle}`}
+              className="mt-2 text-center text-xs text-text-muted hover:text-accent transition-colors"
+            >
+              Preview public tip page
+            </Link>
+          </div>
           <Link href="/card">
             <div className="rounded-card bg-surface border border-border p-5 h-full hover:border-accent/50 transition-colors cursor-pointer">
               <div className="flex items-center justify-between mb-4">

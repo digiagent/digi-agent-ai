@@ -22,7 +22,10 @@ export const agentConversation: AgentMessage[] = [
 
 export const agentQuickActions = [
   { label: "Find campaigns", prompt: "Find campaigns matching my profile" },
+  { label: "Verify my tweet", prompt: "Verify my recent tweet for a campaign reward" },
+  { label: "Copy tip link", prompt: "Give me my tip link so people can send me USDC" },
   { label: "Check balance", prompt: "What is my current USDC balance?" },
+  { label: "Check earnings", prompt: "How much have I earned from campaigns this month?" },
   { label: "Send USDC", prompt: "I want to send USDC" },
   { label: "Swap", prompt: "Swap USDC to EURC" },
   { label: "Find yield", prompt: "Find the best yield for my idle USDC" },

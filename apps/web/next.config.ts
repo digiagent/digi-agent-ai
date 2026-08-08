@@ -7,6 +7,11 @@ const nextConfig: NextConfig = {
     "@digi/utils",
     "@digi/ui",
   ],
+  serverExternalPackages: [
+    "@prisma/client",
+    "@prisma/adapter-pg",
+    "@circle-fin/developer-controlled-wallets",
+  ],
 };
 
 export default nextConfig;
