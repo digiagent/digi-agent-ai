@@ -4,7 +4,6 @@ import { db } from '@/lib/db'
 export async function GET(req: NextRequest) {
   const privyId = req.nextUrl.searchParams.get('privyId')
 
-  // If no privyId, return mock/empty data so the page doesn't crash
   if (!privyId) {
     return NextResponse.json({
       user: null,
