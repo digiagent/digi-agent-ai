@@ -1,9 +1,8 @@
 "use client"
 
-import { useEffect, useMemo, type ReactNode } from "react"
-import { PrivyProvider, usePrivy } from "@privy-io/react-auth"
+import { useMemo, type ReactNode } from "react"
+import { PrivyProvider } from "@privy-io/react-auth"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import { api } from "@/lib/api/client"
 import { MockDataProvider } from "./MockDataProvider"
 import { ThemeProvider } from "./ThemeProvider"
 
@@ -29,21 +28,9 @@ export function Providers({ children }: { children: ReactNode }) {
     >
       <QueryClientProvider client={queryClient}>
         <ThemeProvider>
-          <AuthTokenBridge>
-            <MockDataProvider>{children}</MockDataProvider>
-          </AuthTokenBridge>
+          <MockDataProvider>{children}</MockDataProvider>
         </ThemeProvider>
       </QueryClientProvider>
     </PrivyProvider>
   )
-}
-
-function AuthTokenBridge({ children }: { children: ReactNode }) {
-  const { getAccessToken } = usePrivy()
-
-  useEffect(() => {
-    api.setTokenProvider(() => getAccessToken())
-  }, [getAccessToken])
-
-  return <>{children}</>
 }

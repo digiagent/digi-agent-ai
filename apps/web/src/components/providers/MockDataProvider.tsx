@@ -1,7 +1,7 @@
 "use client"
 
 import { createContext, useContext, useMemo, type ReactNode } from "react"
-import { usePrivy } from "@privy-io/react-auth"
+import { usePrivy, useWallets } from "@privy-io/react-auth"
 import { useQuery } from "@tanstack/react-query"
 import { api } from "@/lib/api/client"
 import { mockCreator } from "@/lib/mock/creator"
@@ -23,13 +23,23 @@ interface MockDataContext {
 const MockDataContext = createContext<MockDataContext | null>(null)
 
 export function MockDataProvider({ children }: { children: ReactNode }) {
-  const { authenticated, ready } = usePrivy()
+  const { authenticated, ready, user } = usePrivy()
+  const { wallets } = useWallets()
   const isAuthed = ready && authenticated
 
+  const embeddedWallet = wallets.find((w) => w.walletClientType === "privy")
+  const walletAddress = embeddedWallet?.address
+
   const userQuery = useQuery({
-    queryKey: ["auth", "verify"],
-    queryFn: () => api.verify(),
-    enabled: isAuthed,
+    queryKey: ["auth", "verify", user?.id],
+    queryFn: () =>
+      api.verify(
+        user!.id,
+        walletAddress,
+        user?.google?.name ?? user?.twitter?.username ?? user?.email?.address?.split("@")[0] ?? "user",
+        user?.email?.address
+      ),
+    enabled: isAuthed && Boolean(user?.id),
     staleTime: 30_000,
   })
 
@@ -37,29 +47,29 @@ export function MockDataProvider({ children }: { children: ReactNode }) {
 
   const balanceQuery = useQuery({
     queryKey: ["wallet", "balance", userId],
-    queryFn: () => api.getBalance(userId),
+    queryFn: () => api.getBalance(userId as string),
     enabled: isAuthed && Boolean(userId),
     staleTime: 30_000,
   })
 
   const activityQuery = useQuery({
-    queryKey: ["wallet", "activity"],
-    queryFn: () => api.getActivity(),
-    enabled: isAuthed,
+    queryKey: ["wallet", "activity", userId],
+    queryFn: () => api.getActivity(userId as string),
+    enabled: isAuthed && Boolean(userId),
     staleTime: 30_000,
   })
 
   const scoreQuery = useQuery({
-    queryKey: ["commerce", "score"],
-    queryFn: () => api.getCommerceScore(),
-    enabled: isAuthed,
+    queryKey: ["commerce", "score", userId],
+    queryFn: () => api.getCommerceScore(userId as string),
+    enabled: isAuthed && Boolean(userId),
     staleTime: 60_000,
   })
 
   const socialQuery = useQuery({
-    queryKey: ["social", "accounts"],
-    queryFn: () => api.getSocialAccounts(),
-    enabled: isAuthed,
+    queryKey: ["social", "accounts", userId],
+    queryFn: () => api.getSocialAccounts(userId as string),
+    enabled: isAuthed && Boolean(userId),
     staleTime: 60_000,
   })
 
@@ -86,28 +96,13 @@ export function MockDataProvider({ children }: { children: ReactNode }) {
       (balance?.rewardsBalance ?? 0)
 
     const walletAssets = [
-      {
-        symbol: "USDC",
-        name: "USD Coin",
-        balance: balance?.usdcBalance ?? 0,
-        chain: "Arc",
-      },
-      {
-        symbol: "EURC",
-        name: "EUR Coin",
-        balance: balance?.eurcBalance ?? 0,
-        chain: "Arc",
-      },
-      {
-        symbol: "RWD",
-        name: "Rewards",
-        balance: balance?.rewardsBalance ?? 0,
-        chain: "Arc",
-      },
+      { symbol: "USDC", name: "USD Coin", balance: balance?.usdcBalance ?? 0, chain: "Arc" },
+      { symbol: "EURC", name: "EUR Coin", balance: balance?.eurcBalance ?? 0, chain: "Arc" },
+      { symbol: "RWD", name: "Rewards", balance: balance?.rewardsBalance ?? 0, chain: "Arc" },
     ]
 
     const handle = apiUser?.digiHandle ?? mockCreator.handle
-    const realTransactions: MockTransaction[] = (activity ?? []).map((tx) => ({
+    const realTransactions: MockTransaction[] = (activity ?? []).map((tx: any) => ({
       id: tx.id,
       type: tx.type === "payout" || tx.amount > 0 ? "reward" : "send",
       description: tx.description,
@@ -145,13 +140,9 @@ export function MockDataProvider({ children }: { children: ReactNode }) {
             locationSignal: commerceScore.locationSignal,
           }
         : mockCreator.scoreBreakdown,
-      niches: commerceScore?.niches?.length
-        ? commerceScore.niches
-        : mockCreator.niches,
+      niches: commerceScore?.niches?.length ? commerceScore.niches : mockCreator.niches,
       socialAccounts,
-      monthlyEarnings: realTransactions
-        .filter((tx) => tx.amount > 0)
-        .reduce((sum, tx) => sum + tx.amount, 0),
+      monthlyEarnings: realTransactions.filter((tx) => tx.amount > 0).reduce((sum, tx) => sum + tx.amount, 0),
       pendingRewards: balance?.rewardsBalance ?? mockCreator.pendingRewards,
     }
 
@@ -166,11 +157,8 @@ export function MockDataProvider({ children }: { children: ReactNode }) {
       creator,
       wallet,
       campaigns: mockCampaigns,
-      transactions: realTransactions.length
-        ? realTransactions
-        : mockTransactions,
-      loading:
-        userQuery.isLoading || balanceQuery.isLoading || activityQuery.isLoading,
+      transactions: realTransactions.length ? realTransactions : mockTransactions,
+      loading: userQuery.isLoading || balanceQuery.isLoading || activityQuery.isLoading,
     }
   }, [
     isAuthed,
@@ -185,11 +173,7 @@ export function MockDataProvider({ children }: { children: ReactNode }) {
     socialQuery.data,
   ])
 
-  return (
-    <MockDataContext.Provider value={data}>
-      {children}
-    </MockDataContext.Provider>
-  )
+  return <MockDataContext.Provider value={data}>{children}</MockDataContext.Provider>
 }
 
 export function useMockData(): MockDataContext {
